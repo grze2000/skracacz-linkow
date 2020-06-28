@@ -25,7 +25,7 @@ router.get('/links/:code', async (ctx) => {
     if(ctx.params && ctx.params.code) {
         const link = await links.findOne({code: ctx.params.code});
         if(link) {
-            ctx.response.body = link.url;
+            ctx.response.body = {url: link.url};
         } else {
             ctx.response.status = 400;
         }
