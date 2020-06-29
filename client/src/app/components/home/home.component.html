@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <div class="main" [class.slide]="slide" [style.animation-duration]="animationDuration+'s'">
+    <h1 class="title">Links</h1>
+    <p class="description">Skraczacz adresów url - zamień link na łatwiejszy do zapamiętania</p>
+    <form action="" class=form>
+      <label for="url" class="form__label">{{ results ? 'Twój skrócony adres został wygenerowany!' : 'Podaj adres url:' }}</label>
+      <input type="text" class="form__textinput" id="url" placeholder="https://" [(ngModel)]="url" [readonly]="results" name="url">
+      <input type="button" [value]="results ? 'Kopiuj' : 'Wklej'" class="form__btn" (click)="schowek()">
+      <input type="submit" value="Skróć link" class="form__btn" (click)="submit()" *ngIf="!results">
+    </form>
+  </div>
+</div>
