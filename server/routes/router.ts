@@ -34,7 +34,7 @@ router.get('/links/:code', async (ctx) => {
 
 router.post('/links', async (ctx) => {
     const body = await ctx.request.body();
-    const link = await body.value.get('link');;
+    const link = await body.value.link;
     if(link !== null) {
         let code = '';
         const lastDocument = await links.aggregate([
