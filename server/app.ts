@@ -5,7 +5,9 @@ import Router from './routes/router.ts'
 
 const app = new Application();
 
-app.use(oakCors());
+app.use(oakCors({
+    origin: config()['CLIENT_URL'] || true
+}));
 app.use(Router.routes());
 app.use(Router.allowedMethods());
 
