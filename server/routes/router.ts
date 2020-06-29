@@ -60,7 +60,7 @@ router.post('/links', async (ctx) => {
             code: code
         });
         ctx.response.status = 201;
-        ctx.response.body = code;
+        ctx.response.body = {code: code};
     } else {
         ctx.response.status = 400;
         ctx.response.body = 'No link provided';
