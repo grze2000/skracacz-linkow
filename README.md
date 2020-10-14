@@ -33,5 +33,9 @@ Run `ng build` to build the project. Use the `--prod` flag for a production buil
 
 [Install Deno](https://deno.land/#installation) and run project with command:
 ```
-npm start
+deno run --allow-net --allow-read --allow-write --allow-plugin --unstable app.ts
+```
+or using [velociraptor](https://deno.land/x/velociraptor) script:
+```
+vr run start
 ```
