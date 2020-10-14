@@ -1,5 +1,5 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
-import { MongoClient } from "https://deno.land/x/mongo@v0.8.0/mod.ts";
+import { MongoClient } from "https://deno.land/x/mongo/mod.ts";
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 import LinkSchema from '../models/Link.ts';
 
@@ -7,7 +7,7 @@ const client = new MongoClient();
 client.connectWithUri(config()['MONGODB_URI']);
 
 const db = client.database(config()['MONGODB_DB']);
-const links = db.collection(config()['MONGODB_COLLECTION']);
+const links = db.collection<LinkSchema>(config()['MONGODB_COLLECTION']);
 
 const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -33,15 +33,14 @@ router.get('/links/:code', async (ctx) => {
 });
 
 router.post('/links', async (ctx) => {
-    const body = await ctx.request.body();
-    const link = await body.value.link;
+    const { value } = ctx.request.body();
+    const { link } = await value;
     if(link !== null) {
         let code = '';
-        const lastDocument = await links.aggregate([
+        const lastDocument: LinkSchema[] = await links.aggregate([
             {$sort: {_id: -1}},
             {$limit: 1}
         ]);
-
         if(lastDocument.length) {
             const lastCode = lastDocument[0].code;
             const index = chars.indexOf(lastCode[lastCode.length-1]);
