@@ -2,7 +2,7 @@
 
 I wanted to learn another front-end framework. I chose Angular. I also decided to try Deno as back-end. It's a very simple project. It allows to create shorter/easier to remember links.
 
-![](https://grzegorzbabiarz.com/img/skracacz-linkow.jpg)
+![](https://grzegorzbabiarz.com/public/img/skracaczLinkow/skracacz-linkow.jpg)
 
 ## Built with
 
