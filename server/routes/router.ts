@@ -4,7 +4,7 @@ import { config } from "https://deno.land/x/dotenv/mod.ts";
 import LinkSchema from '../models/Link.ts';
 
 const client = new MongoClient();
-client.connectWithUri(config()['MONGODB_URI']);
+await client.connect(config()['MONGODB_URI']);
 
 const db = client.database(config()['MONGODB_DB']);
 const links = db.collection<LinkSchema>(config()['MONGODB_COLLECTION']);
